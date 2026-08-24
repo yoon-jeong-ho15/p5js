@@ -1,5 +1,5 @@
 import oneWithEverything from "./oneWithEverything";
 import initials from "./initials";
-import braille from "./braille";
+import kaleidoscope from "./kaleidoscope";
 
-export { oneWithEverything, initials, braille };
+export { oneWithEverything, initials, kaleidoscope };

@@ -8,7 +8,7 @@ type SketchName = keyof typeof sketches;
 const titles: Record<SketchName, string> = {
   oneWithEverything: "One With Everything",
   initials: "Initials",
-  braille: "Braille",
+  kaleidoscope: "Kaleidoscope",
 };
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
             One With Everything
           </li>
           <li onClick={() => setCurrentSketch("initials")}>Initials</li>
-          <li onClick={() => setCurrentSketch("braille")}>Braille</li>
+          <li onClick={() => setCurrentSketch("kaleidoscope")}>Kaleidoscope</li>
         </ul>
       </nav>
       <P5Canvas

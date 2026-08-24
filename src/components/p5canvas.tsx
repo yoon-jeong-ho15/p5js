@@ -16,7 +16,7 @@ export default function P5Canvas({
     return () => {
       p5Sketch.remove();
     };
-  }, [sketch, open]);
+  }, [sketch]);
 
   return (
     <div className="p5-container">
