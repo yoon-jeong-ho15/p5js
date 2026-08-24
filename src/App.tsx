@@ -3,30 +3,29 @@ import P5Canvas from "./components/p5canvas";
 import * as sketches from "./components/sketch";
 import { useState } from "react";
 
-type SketchName = keyof typeof sketches;
-
-const titles: Record<SketchName, string> = {
+const titles: Record<string, string> = {
   oneWithEverything: "One With Everything",
   initials: "Initials",
   kaleidoscope: "Kaleidoscope",
+  wavePattern: "Wave Pattern",
 };
 
 function App() {
-  const [currentSketch, setCurrentSketch] = useState<SketchName>("initials");
+  const [currentSketch, setCurrentSketch] = useState<string>("initials");
   return (
     <>
       <nav>
         <ul>
-          <li onClick={() => setCurrentSketch("oneWithEverything")}>
-            One With Everything
-          </li>
-          <li onClick={() => setCurrentSketch("initials")}>Initials</li>
-          <li onClick={() => setCurrentSketch("kaleidoscope")}>Kaleidoscope</li>
+          {Object.keys(sketches).map((sketch) => (
+            <li onClick={() => setCurrentSketch(sketch)}>
+              {titles[sketch]}
+            </li>
+          ))}
         </ul>
       </nav>
       <P5Canvas
         title={titles[currentSketch]}
-        sketch={sketches[currentSketch]}
+        sketch={sketches[currentSketch as keyof typeof sketches]}
       />
     </>
   );
