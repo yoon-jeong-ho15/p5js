@@ -8,6 +8,8 @@ const titles: Record<string, string> = {
   initials: "Initials",
   kaleidoscope: "Kaleidoscope",
   wavePattern: "Wave Pattern",
+  rainbowCircle: "Rainbow Circle",
+  movingStar: "Moving Star"
 };
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
       <nav>
         <ul>
           {Object.keys(sketches).map((sketch) => (
-            <li onClick={() => setCurrentSketch(sketch)}>
+            <li
+              key={sketch}
+              onClick={() => setCurrentSketch(sketch)}>
               {titles[sketch]}
             </li>
           ))}
