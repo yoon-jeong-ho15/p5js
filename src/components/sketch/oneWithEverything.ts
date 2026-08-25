@@ -7,100 +7,122 @@ const order = [
 ];
 
 export default function oneWithEverything(p: p5) {
+  let cols = 3;
+  let rows = 3;
+
   p.setup = () => {
-    p.createCanvas(900, 900);
+    p.createCanvas(600, 600);
     p.background(200);
     p.strokeWeight(8);
     p.noLoop();
   };
 
   p.draw = () => {
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
+    const cellW = p.width / cols;
+    const cellH = p.height / rows;
+
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
         const object = order[i][j];
 
-        const offSetX = j * 300;
-        const offSetY = i * 300;
+        const offSetX = j * cellW;
+        const offSetY = i * cellH;
 
-        let mod = 30;
+        p.push();
+        p.translate(offSetX, offSetY);
 
         switch (object) {
           case "triangle":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
-            p.triangle(30, 270, 270, 270, 150, 30);
+            p.fill(255);
+            p.triangle(
+              cellW * 0.15,
+              cellH * 0.85,
+              cellW * 0.85,
+              cellH * 0.85,
+              cellW * 0.5,
+              cellH * 0.15
+            );
             break;
           case "rect":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
             p.fill(255);
-            p.rect(30, 30, 250, 250);
+            p.rect(cellW * 0.15, cellH * 0.15, cellW * 0.7, cellH * 0.7);
             break;
           case "circle":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
             p.fill(255);
-            p.circle(150, 150, 250);
+            p.circle(cellW * 0.5, cellH * 0.5, Math.min(cellW, cellH) * 0.75);
             break;
-          case "line":
-            mod = 60;
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
-            p.line(30, 30, 270, 270);
-            p.point(270 - mod, 30 + mod);
-            p.point(30 + mod, 270 - mod);
+          case "line": {
+            const modX = cellW * 0.2;
+            const modY = cellH * 0.2;
+            p.line(cellW * 0.1, cellH * 0.1, cellW * 0.9, cellH * 0.9);
+            p.point(cellW * 0.9 - modX, cellH * 0.1 + modY);
+            p.point(cellW * 0.1 + modX, cellH * 0.9 - modY);
             break;
-          case "bezier":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
+          }
+          case "bezier": {
             p.noFill();
+            const x1 = cellW * 0.1;
+            const x2 = cellW * 0.9;
+            const y1 = cellH * 0.1;
+            const y2 = cellH * 0.9;
 
-            p.point(30, 30);
-            p.point(270, 30);
-            p.point(270, 270);
-            p.point(30, 270);
+            p.point(x1, y1);
+            p.point(x2, y1);
+            p.point(x2, y2);
+            p.point(x1, y2);
 
-            p.line(30, 30, 30, 270);
-            p.line(270, 30, 270, 270);
+            p.line(x1, y1, x1, y2);
+            p.line(x2, y1, x2, y2);
 
-            p.bezier(30, 270, 30, 30, 270, 270, 270, 30);
+            p.bezier(x1, y2, x1, y1, x2, y2, x2, y1);
             break;
+          }
           case "zigzag":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
             p.noFill();
-
             p.beginShape();
-            p.vertex(30, 150);
-            p.vertex(90, 270);
-            p.vertex(90, 30);
-            p.vertex(210, 270);
-            p.vertex(210, 30);
-            p.vertex(270, 150);
+            p.vertex(cellW * 0.1, cellH * 0.5);
+            p.vertex(cellW * 0.3, cellH * 0.9);
+            p.vertex(cellW * 0.3, cellH * 0.1);
+            p.vertex(cellW * 0.7, cellH * 0.9);
+            p.vertex(cellW * 0.7, cellH * 0.1);
+            p.vertex(cellW * 0.9, cellH * 0.5);
             p.endShape();
             break;
           case "pacman":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
             p.fill(255);
-            p.arc(150, 150, 250, 250, 0.6, -0.6, "pie");
+            p.arc(
+              cellW * 0.5,
+              cellH * 0.5,
+              cellW * 0.75,
+              cellH * 0.75,
+              0.6,
+              -0.6,
+              "pie"
+            );
             break;
           case "trapezoid":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
-            p.quad(90, 30, 210, 30, 270, 270, 30, 270);
+            p.fill(255);
+            p.quad(
+              cellW * 0.3,
+              cellH * 0.1,
+              cellW * 0.7,
+              cellH * 0.1,
+              cellW * 0.9,
+              cellH * 0.9,
+              cellW * 0.1,
+              cellH * 0.9
+            );
             break;
           case "elipse":
-            p.resetMatrix();
-            p.translate(offSetX, offSetY);
-            p.translate(150, 150);
+            p.translate(cellW * 0.5, cellH * 0.5);
             p.fill(255);
             p.angleMode(p.DEGREES);
             p.rotate(45);
-            p.ellipse(0, 0, 250, 100);
-            p.rotate(-45);
+            p.ellipse(0, 0, cellW * 0.8, cellH * 0.35);
             break;
         }
+
+        p.pop();
       }
     }
   };

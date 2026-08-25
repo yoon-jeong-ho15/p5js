@@ -72,6 +72,6 @@ class Star {
     }
 
     display() {
-        p.ellipse(this.x, this.y, 5, 5);
+        // p.ellipse(this.x, this.y, 5, 5);
     }
 }
