@@ -11,6 +11,7 @@ import mouseFollowingDial from "./mouseFollowingDial";
 import ticTacToe from "./ticTacToe";
 import fireYBall from "./fireYBall";
 import fan from "./fan";
+import clock from "./clock";
 
 export {
     oneWithEverything,
@@ -25,5 +26,6 @@ export {
     mouseFollowingDial,
     ticTacToe,
     fireYBall,
-    fan
+    fan,
+    clock
 };
