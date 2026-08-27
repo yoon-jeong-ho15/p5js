@@ -12,6 +12,7 @@ import ticTacToe from "./ticTacToe";
 import fireYBall from "./fireYBall";
 import fan from "./fan";
 import clock from "./clock";
+import mouseFollowingDots from "./mouseFollowingDots";
 
 export {
     oneWithEverything,
@@ -27,5 +28,6 @@ export {
     ticTacToe,
     fireYBall,
     fan,
-    clock
+    clock,
+    mouseFollowingDots
 };
