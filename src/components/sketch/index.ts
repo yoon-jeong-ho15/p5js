@@ -13,6 +13,12 @@ import fireYBall from "./fireYBall";
 import fan from "./fan";
 import clock from "./clock";
 import mouseFollowingDots from "./mouseFollowingDots";
+import mouseGridInteraction from "./mouseGridInteraction";
+import interactiveCollidingObjects from "./interactiveCollidingObjects";
+import rasterGraphic from "./rasterGraphic";
+import perlinNoise from "./perlinNoise";
+import bezierCurve from "./bezierCurve";
+import discoGrid from "./discoGrid";
 
 export {
     oneWithEverything,
@@ -29,5 +35,11 @@ export {
     fireYBall,
     fan,
     clock,
-    mouseFollowingDots
+    mouseFollowingDots,
+    mouseGridInteraction,
+    interactiveCollidingObjects,
+    rasterGraphic,
+    perlinNoise,
+    bezierCurve,
+    discoGrid
 };
