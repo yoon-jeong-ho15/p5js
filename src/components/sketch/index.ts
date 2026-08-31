@@ -19,6 +19,7 @@ import rasterGraphic from "./rasterGraphic";
 import perlinNoise from "./perlinNoise";
 import bezierCurve from "./bezierCurve";
 import discoGrid from "./discoGrid";
+import interactiveRotatingBlocks from "./interactiveRotatingBlocks";
 
 export {
     oneWithEverything,
@@ -41,5 +42,6 @@ export {
     rasterGraphic,
     perlinNoise,
     bezierCurve,
-    discoGrid
+    discoGrid,
+    interactiveRotatingBlocks
 };
