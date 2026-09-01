@@ -31,14 +31,15 @@ export default function rippleGrid(inst: p5) {
         p.background(0);
 
         for (let brick of bricks) {
-            brick.display(ripples);
+            brick.update(ripples);
+            brick.display();
         }
 
         for (let i = ripples.length - 1; i >= 0; i--) {
             ripples[i].update();
             ripples[i].display();
 
-            if (ripples[i].r >= 300) {
+            if (ripples[i].r >= 200) {
                 ripples.splice(i, 1);
             }
         }
@@ -64,28 +65,25 @@ class Brick {
         this.angle = 0;
     }
 
-    display(ripples: Ripple[]) {
+    update(ripples: Ripple[]) {
         let isHit = false;
 
-        // 활성화된 파동(ripple) 중 사각형과 겹치는지 판별
         for (let i = 0; i < ripples.length; i++) {
             let ripple = ripples[i];
             let d = p.dist(this.x, this.y, ripple.x, ripple.y);
-            let waveRadius = ripple.r / 2;
 
-            if (Math.abs(d - waveRadius) < 15) {
+            if (Math.abs(d - ripple.r) < 10) {
                 isHit = true;
                 break;
             }
         }
 
-        // 목표 각도 (겹치면 50도, 아니면 0도)
         let targetAngle = isHit ? 50 : 0;
-        // lerp(선형 보간)를 이용해 현재 각도에서 목표 각도로 부드럽게 전환
-        this.angle = p.lerp(this.angle, targetAngle, 0.1);
+        this.angle = p.lerp(this.angle, targetAngle, 0.25);
+    }
 
-        // 각도 변화에 맞춰 stroke 색상도 자연스럽게 전환 (100 -> 255)
-        let currentStroke = p.map(this.angle, 0, 50, 100, 255);
+    display() {
+        let currentStroke = p.map(this.angle, 0, 45, 100, 255);
 
         p.push();
         p.translate(this.x, this.y);
@@ -113,6 +111,6 @@ class Ripple {
 
     display() {
         p.noStroke();
-        p.circle(this.x, this.y, this.r);
+        p.circle(this.x, this.y, this.r * 2);
     }
 }
