@@ -37,7 +37,6 @@ export default function rippleGrid(inst: p5) {
 
         for (let i = ripples.length - 1; i >= 0; i--) {
             ripples[i].update();
-            ripples[i].display();
 
             if (ripples[i].r >= 200) {
                 ripples.splice(i, 1);
@@ -78,7 +77,7 @@ class Brick {
             }
         }
 
-        let targetAngle = isHit ? 50 : 0;
+        let targetAngle = isHit ? 90 : 0;
         this.angle = p.lerp(this.angle, targetAngle, 0.25);
     }
 
@@ -107,10 +106,5 @@ class Ripple {
 
     update() {
         this.r += 5;
-    }
-
-    display() {
-        p.noStroke();
-        p.circle(this.x, this.y, this.r * 2);
     }
 }
