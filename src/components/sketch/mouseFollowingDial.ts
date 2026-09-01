@@ -23,7 +23,7 @@ export default function mouseFollowingDial(inst: p5) {
     }
 
     p.draw = () => {
-        p.background(220);
+        p.background(0);
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
                 dials[i][j].moveDial();
@@ -46,9 +46,13 @@ class Dial {
     }
 
     moveDial() {
+        let d = p.dist(p.mouseX, p.mouseY, this.x, this.y);
+        let c = p.map(d, 0, 200, 255, 0, true);
+
         p.push();
         p.translate(this.x, this.y);
         p.rotate(p.atan2(p.mouseY - this.y, p.mouseX - this.x));
+        p.fill(c);
         p.rect(0, 0, this.height, this.width);
         p.pop();
     }

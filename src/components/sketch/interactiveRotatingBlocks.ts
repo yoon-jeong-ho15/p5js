@@ -63,6 +63,8 @@ class Brick {
 
         if (distSq < radiusSq) {
             this.angle = Math.min(50, this.angle + 6);
+        } else if (radiusSq < distSq && distSq < radiusSq * 1.5) {
+            this.angle = Math.min(25, this.angle + 4);
         } else if (this.angle > 0) {
             this.angle = Math.max(0, this.angle - 2);
         }

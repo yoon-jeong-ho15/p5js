@@ -20,6 +20,9 @@ import perlinNoise from "./perlinNoise";
 import bezierCurve from "./bezierCurve";
 import discoGrid from "./discoGrid";
 import interactiveRotatingBlocks from "./interactiveRotatingBlocks";
+import ripple from "./ripple";
+import progress from "./progress";
+import rippleGrid from "./rippleGrid";
 
 export {
     oneWithEverything,
@@ -43,5 +46,8 @@ export {
     perlinNoise,
     bezierCurve,
     discoGrid,
-    interactiveRotatingBlocks
+    interactiveRotatingBlocks,
+    ripple,
+    progress,
+    rippleGrid
 };
