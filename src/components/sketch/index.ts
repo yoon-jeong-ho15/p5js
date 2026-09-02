@@ -23,6 +23,7 @@ import interactiveRotatingBlocks from "./interactiveRotatingBlocks";
 import ripple from "./ripple";
 import progress from "./progress";
 import rippleGrid from "./rippleGrid";
+import rotatingCircles from "./rotatingCircles";
 
 export {
     oneWithEverything,
@@ -49,5 +50,6 @@ export {
     interactiveRotatingBlocks,
     ripple,
     progress,
-    rippleGrid
+    rippleGrid,
+    rotatingCircles
 };

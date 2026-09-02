@@ -4,83 +4,84 @@ let p: p5;
 
 export default function interactiveRotatingBlocks(inst: p5) {
     p = inst;
-    const cols = 30;
-    const rows = 30;
-    const bricks: Brick[] = [];
+
+    let cols: number;
+    let rows: number;
+    let size = 10;
+    let blocks: Block[] = [];
 
     p.setup = () => {
         p.createCanvas(600, 600);
         p.rectMode(p.CENTER);
         p.angleMode(p.DEGREES);
-        p.noFill();
-        p.strokeWeight(2);
 
-        const size = p.width / cols;
-        const halfSize = size / 2;
-        const blockSize = size - 7;
+        cols = p.width / size;
+        rows = p.height / size;
 
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
-                bricks.push(new Brick(i * size + halfSize, j * size + halfSize, blockSize));
+                let x = i * size + size / 2;
+                let y = j * size + size / 2;
+                let b = new Block(x, y, size - 3);
+                blocks.push(b);
             }
         }
     };
 
     p.draw = () => {
         p.background(0);
-
-        const mx = p.mouseX;
-        const my = p.mouseY;
-        const interactionRadius = 35;
-        const radiusSq = interactionRadius * interactionRadius;
-        const total = bricks.length;
-
-        for (let i = 0; i < total; i++) {
-            const brick = bricks[i];
-            brick.update(mx, my, radiusSq);
-            brick.display();
+        for (let i = 0; i < blocks.length; i++) {
+            blocks[i].update();
+            blocks[i].display();
         }
     };
 }
 
-class Brick {
+class Block {
     x: number;
     y: number;
     size: number;
     angle: number;
+    isHit: boolean;
 
     constructor(x: number, y: number, size: number) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.angle = 0;
+        this.isHit = false;
     }
 
-    update(mx: number, my: number, radiusSq: number) {
-        const dx = mx - this.x;
-        const dy = my - this.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < radiusSq) {
-            this.angle = Math.min(50, this.angle + 6);
-        } else if (radiusSq < distSq && distSq < radiusSq * 1.5) {
-            this.angle = Math.min(25, this.angle + 4);
-        } else if (this.angle > 0) {
-            this.angle = Math.max(0, this.angle - 2);
+    update() {
+        let d = p.dist(this.x, this.y, p.mouseX, p.mouseY);
+        if (d < 40) {
+            this.isHit = true;
+        } else {
+            this.isHit = false;
         }
+
     }
 
     display() {
-        if (this.angle > 0) {
-            p.stroke(255);
-            p.push();
-            p.translate(this.x, this.y);
-            p.rotate(this.angle);
-            p.rect(0, 0, this.size, this.size);
-            p.pop();
+        if (this.isHit) {
+            this.angle += 4;
+            if (this.angle > 45) {
+                this.angle = 45;
+            }
         } else {
-            p.stroke(100);
-            p.rect(this.x, this.y, this.size, this.size);
+            this.angle -= 1;
+            if (this.angle < 0) {
+                this.angle = 0;
+            }
         }
+        let strokeColor = this.angle > 0 ? 255 : 100;
+        p.push();
+        p.translate(this.x, this.y);
+        p.rotate(this.angle);
+        p.noFill();
+        p.stroke(strokeColor);
+        p.rect(0, 0, this.size, this.size);
+        p.pop();
     }
+
 }
