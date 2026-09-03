@@ -25,6 +25,9 @@ import progress from "./progress";
 import rippleGrid from "./rippleGrid";
 import rotatingCircles from "./rotatingCircles";
 import rotatingCircles2 from "./rotatingCircles2";
+import generativeTypography from "./generativeTypography";
+import eight from "./eight";
+import eight2 from "./eight2";
 
 export {
     oneWithEverything,
@@ -54,4 +57,8 @@ export {
     rippleGrid,
     rotatingCircles,
     rotatingCircles2,
+    generativeTypography,
+    eight,
+    eight2,
 };
+
