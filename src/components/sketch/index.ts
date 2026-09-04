@@ -28,6 +28,10 @@ import rotatingCircles2 from "./rotatingCircles2";
 import generativeTypography from "./generativeTypography";
 import eight from "./eight";
 import eight2 from "./eight2";
+import eightWorm from "./eight3";
+import arc from "./arc";
+import arc2 from "./arc2";
+import hiddenMessageDisplay from "./hiddenMessageDisplay";
 
 export {
     oneWithEverything,
@@ -60,5 +64,9 @@ export {
     generativeTypography,
     eight,
     eight2,
+    eightWorm,
+    arc,
+    arc2,
+    hiddenMessageDisplay
 };
 

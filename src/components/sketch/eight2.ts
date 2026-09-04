@@ -20,7 +20,7 @@ export default function eight(inst: p5) {
 
         p.noFill();
         p.ellipse(0, -r, r * 2, r * 2);
-        p.ellipse(0, r / 2, r, r);
+        p.ellipse(0, r, r * 2, r * 2);
 
         let x: number;
         let y: number;
@@ -28,17 +28,15 @@ export default function eight(inst: p5) {
         if (t < 360) {
             x = r * p.sin(t);
             y = r * p.cos(t) - r;
-            t += speed * 0.5
         } else {
-            const angle = t - 360;
-            x = (r * 0.5) * p.sin(angle);
-            y = (r * 0.5) - (r * 0.5) * p.cos(angle);
-            t += speed;
+            x = r * p.sin(t);
+            y = -r * p.cos(t) + r;
         }
 
         p.fill(255);
         p.ellipse(x, y, 20, 20);
 
+        t += speed;
         if (t >= 720) {
             t -= 720;
         }
